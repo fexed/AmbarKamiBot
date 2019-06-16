@@ -87,8 +87,9 @@ def maps(bot, update):
 def inline_callback(bot, update):
 	map = update.callback_query.data
 	bot.answer_callback_query(update.callback_query.id, "Ok, sto caricando " + map + "\nAttendi pls")
+	bot.delete_message(update.callback_query.message.chat.id, update.callback_query.message.message_id)
 	bot.send_message(update.callback_query.message.chat.id, "In arrivo la mappa " + map + "\nDatemi un attimo")
-	bot.send_photo(update.callback_query.message.chat.id, photo=open('/home/pi/ambarkami/imgs/maps/'+map, 'rb'), timeout=60)
+	bot.send_document(update.callback_query.message.chat.id, document=open('/home/pi/ambarkami/imgs/maps/'+map, 'rb'), timeout=60)
 
 @restricted
 @send_action(ChatAction.UPLOAD_DOCUMENT)
