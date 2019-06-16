@@ -42,13 +42,23 @@ def restricted(func):
 
 @send_action(ChatAction.TYPING)
 def pgs(bot, update):
-	message = '*PG* attualmente in game\n\n\n*Dexio*\nUmano ammazzadraghi di livello 4\n\n*Durga*\nMezzorca guerriera di livello 4\n\n*Kaato*\nUmano ninja di livello 4\n\n*Miryks*\nElfa ranger di livello 4\n\n*Ragnar*\nUmano/draconide stregone di livello 4\n\n*Silva*\nTiefling druido/monaco di livello 4\n\n*Zanark*\nDraconide/umano paladino di livello 4'.format(update.message.from_user.username)
+	message = ('*PG* attualmente in game\n\n\n' +
+		'*Dexio*\nUmano ammazzadraghi di livello 4\n\n' +
+		'*Durga Morganist III*\nMezzorca guerriera di livello 4\n\n' +
+		'*Kaato*\nUmano ninja di livello 4\n\n' +
+		'*Miryks Raanmirtah*\nElfa ranger di livello 4\n\n' +
+		'*Ragnar*\nUmano/draconide stregone di livello 4\n\n' +
+		'*Silva*\nTiefling druido/monaco di livello 4\n\n' +
+		'*Zanark*\nDraconide/umano paladino di livello 4'.format(update.message.from_user.username))
 	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
 	logging.info("/pgs da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id))
 
 @send_action(ChatAction.TYPING)
 def npcs(bot, update):
-	message = 'NPCS'
+	message = ('*NPCS* attualmente rilevanti incontrati\n\n\n' +
+		"*Alark Tonan*\nMezzelfo di 26 anni, dal fisico resistente e i capelli neri avvolti in una coda.\nAttualmente è il vostro timoniere e compagno di viaggio.\n\n" +
+		"*Rofus Zanka*\nUmano rude e poco cordiale, ma molto pragmatico.\nCapitano delle guardie e governatore di Hafna\n\n" +
+		"*Momok*\nAnziano umano e antico eroe guerriero, ha sconfitto uno stregone ma ne ha pagato il prezzo veneno portato 100 anni nel futuro arrivando 60 anni prima delle vostre avventure\nVi ha contattato raccontandovi la sua storia e i suoi riti e chiedendovi di fermare una volta per tutte lo Stregone delle Sette Punte\n\n")
 	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
 	logging.info("/npcs da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id))
 
