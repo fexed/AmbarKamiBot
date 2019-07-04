@@ -43,24 +43,19 @@ def restricted(func):
 
 @send_action(ChatAction.TYPING)
 def pgs(bot, update):
-	message = ('*PG* attualmente in game\n\n\n' +
-		'*Dexio* LV5 6800xp\nUmano ammazzadraghi\n\n' +
-		'*Durga Morganist III* LV4 5700xp\nMezzorca guerriera\n\n' +
-		'*Kaato* LV5 6765xp\nUmano ninja\n\n' +
-		'*Miryks Raanmirtah* LV5 6965xp\nElfa ranger\nCompagno animale: il lupo *Loki*\n\n' +
-		'*Ragnar* LV5 6995xp\nUmano/draconide stregone\n\n' +
-		'*Silva* LV5 6885xp\nTiefling druido/monaco\n\n' +
-		'*Zanark* LV5 7205xp\nDraconide/umano paladino\n\n')
+	process = subprocess.Popen(['/bin/cat', '/home/pi/ambarkami/txts/pgs'], stdout=subprocess.PIPE)
+	process.wait()
+	output, err = process.communicate()
+	message = output.decode("utf-8")
 	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
 	logging.info("/pgs da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id))
 
 @send_action(ChatAction.TYPING)
 def npcs(bot, update):
-	message = ('*NPCS* attualmente rilevanti\n\n\n' +
-		"*Alark Tonan*\nMezzelfo di 26 anni, dal fisico resistente e i capelli neri avvolti in una coda.\nAttualmente è il vostro timoniere e compagno di viaggio.\n\n" +
-		"*Rofus Zanka*\nUmano rude e poco cordiale, ma molto pragmatico.\nCapitano delle guardie e governatore di Hafna\n\n" +
-		"*Momok*\nAnziano umano e antico eroe guerriero, ha sconfitto uno stregone ma ne ha pagato il prezzo veneno portato 100 anni nel futuro arrivando 60 anni prima delle vostre avventure.\nVi ha contattato raccontandovi la sua storia e i suoi riti per trovarvi, e chiedendovi di fermare una volta per tutte lo Stregone delle Sette Punte\n\n" +
-		"*Lich delle Sette Punte*\n?\n\n")
+	process = subprocess.Popen(['/bin/cat', '/home/pi/ambarkami/txts/npcs'], stdout=subprocess.PIPE)
+	process.wait()
+	output, err = process.communicate()
+	message = output.decode("utf-8")
 	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
 	logging.info("/npcs da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id))
 
@@ -110,42 +105,6 @@ def restartbot(bot, update):
 	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
 	logging.info("/restartbot da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id))
 	Thread(target=stop_and_restart).start()
-
-def d20(bot, update):
-	val = str(randint(1, 20))
-	message = "Lancio un D20\n*" + val + "*"
-	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
-	logging.info("/d20 da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id) + " [" + val + "]")
-
-def d12(bot, update):
-	val = str(randint(1, 12))
-	message = "Lancio un D12\n*" + val + "*"
-	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
-	logging.info("/d12 da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id) + " [" + val + "]")
-
-def d10(bot, update):
-	val = str(randint(1, 10))
-	message = "Lancio un D10\n*" + val + "*"
-	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
-	logging.info("/d10 da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id) + " [" + val + "]")
-
-def d8(bot, update):
-	val = str(randint(1, 8))
-	message = "Lancio un D8\n*" + val + "*"
-	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
-	logging.info("/d8 da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id) + " [" + val + "]")
-
-def d6(bot, update):
-	val = str(randint(1, 6))
-	message = "Lancio un D6\n*" + val + "*"
-	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
-	logging.info("/d6 da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id) + " [" + val + "]")
-
-def d4(bot, update):
-	val = str(randint(1, 4))
-	message = "Lancio un D4\n*" + val + "*"
-	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
-	logging.info("/d4 da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id) + " [" + val + "]")
 
 def story(bot, update):
 	update.message.reply_document(document=open('/home/pi/ambarkami/txts/story', 'rb'), filename="story.txt")
