@@ -44,13 +44,13 @@ def restricted(func):
 @send_action(ChatAction.TYPING)
 def pgs(bot, update):
 	message = ('*PG* attualmente in game\n\n\n' +
-		'*Dexio* LV4 6100xp\nUmano ammazzadraghi\n\n' +
-		'*Durga Morganist III* LV4 5000xp\nMezzorca guerriera\n\n' +
-		'*Kaato* LV4 5765xp\nUmano ninja\n\n' +
-		'*Miryks Raanmirtah* LV4 6065xp\nElfa ranger\nCompagno animale: il lupo *Loki*\n\n' +
-		'*Ragnar* LV4 6195xp\nUmano/draconide stregone\n\n' +
-		'*Silva* LV4 6085xp\nTiefling druido/monaco\n_Attualmente disperso all\'interno del Dojo di Tao Xiuying_\n\n' +
-		'*Zanark* LV5 6505xp\nDraconide/umano paladino\n\n')
+		'*Dexio* LV5 6800xp\nUmano ammazzadraghi\n\n' +
+		'*Durga Morganist III* LV4 5700xp\nMezzorca guerriera\n\n' +
+		'*Kaato* LV5 6765xp\nUmano ninja\n\n' +
+		'*Miryks Raanmirtah* LV5 6965xp\nElfa ranger\nCompagno animale: il lupo *Loki*\n\n' +
+		'*Ragnar* LV5 6995xp\nUmano/draconide stregone\n\n' +
+		'*Silva* LV5 6885xp\nTiefling druido/monaco\n\n' +
+		'*Zanark* LV5 7205xp\nDraconide/umano paladino\n\n')
 	update.message.reply_text(message, parse_mode=telegram.ParseMode.MARKDOWN)
 	logging.info("/pgs da " + format(update.message.from_user.username) + " " + format(update.message.from_user.id))
 
